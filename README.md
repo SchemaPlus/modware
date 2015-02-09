@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/modware.svg)](http://badge.fury.io/rb/modware)
-[![Build Status](https://secure.travis-ci.org/SchemaPlus/modware.svg)](http://travis-ci.org/SchemaPlus/modware)
-[![Coverage Status](https://img.shields.io/coveralls/SchemaPlus/modware.svg)](https://coveralls.io/r/SchemaPlus/modware)
+[![Build Status](https://secure.travis-ci.org/ronen/modware.svg)](http://travis-ci.org/ronen/modware)
+[![Coverage Status](https://img.shields.io/coveralls/ronen/modware.svg)](https://coveralls.io/r/ronen/modware)
 
 # Modware
 
@@ -38,7 +38,7 @@ and Modware will define a class that accepts those keys as keyword arguments, an
 
 ### Defining middleware
 
-Middleware is defined as a module, that defines one or more middleware methods:
+Middleware is defined as a module that defines one or more middleware methods:
 
 ```ruby
 module MyMiddleware
