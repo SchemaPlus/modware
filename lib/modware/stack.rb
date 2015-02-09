@@ -3,10 +3,10 @@ require 'key_struct'
 
 module Modware
   class Stack
-    def initialize(env_class)
-      @env_class = case env_class
-                   when Class then env_class
-                   else KeyStruct[*env_class]
+    def initialize(env:)
+      @env_klass = case env
+                   when Class then env
+                   else KeyStruct[*env]
                    end
       @middlewares = []
     end
@@ -17,8 +17,8 @@ module Modware
       @middlewares << middleware
     end
 
-    def start(env_opts, &implementation)
-      env = @env_class.new(env_opts)
+    def start(*args, &implementation)
+      env = @env_klass.new(*args)
       @base_implementation = implementation
       execute_stack(env)
       env

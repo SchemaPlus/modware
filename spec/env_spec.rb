@@ -2,23 +2,23 @@ require 'spec_helper'
 
 describe "Env" do
 
-  When(:env) { Modware::Stack.new(env_class).start(env_args) {} }
+  When(:env) { Modware::Stack.new(env: klass).start(args) {} }
 
-  context "if env_class is a Class" do
+  context "if env: klass is a Class" do
 
-    Given(:env_class) { String }
-    Given(:env_args) { "EnvArgs" }
+    Given(:klass) { String }
+    Given(:args) { "EnvArgs" }
 
-    Then { expect(env).to eq env_class.new(env_args) }
+    Then { expect(env).to eq klass.new(args) }
 
   end
 
-  context "if env_class is an array of keys" do
+  context "if env: klass is an array of keys" do
 
-    Given(:env_class) { [:a, :b, :c] }
-    Given(:env_args) { {a: 1, b: 2, c: 3} }
+    Given(:klass) { [:a, :b, :c] }
+    Given(:args) { {a: 1, b: 2, c: 3} }
 
-    Then { expect(env.to_hash).to eq env_args }
+    Then { expect(env.to_hash).to eq args }
   end
 
 end

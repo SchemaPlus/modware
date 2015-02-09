@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Execution" do
 
-  Given(:stack) { Modware::Stack.new([:result]) }
+  Given(:stack) { Modware::Stack.new(env: [:result]) }
 
   context "when start with no implementation" do
 

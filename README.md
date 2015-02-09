@@ -23,13 +23,13 @@ spec.add_dependency 'modware'   # in a .gemspec
 Create a stack using:
 
 ```ruby
-stack = Modware::Stack.new(env_class)
+stack = Modware::Stack.new(env: klass)
 ```
 
-where `env_class` is a Class for the environment instance that will be passed to the layers of the stack.  As a shorthand for the common case, you can simply pass an array of keys, e.g.
+where `klass` is a Class for the environment instance that will be passed to the layers of the stack.  As a shorthand for the common case, you can simply pass an array of keys, e.g.
 
 ```ruby
-stack = Modware::Stack.new([:name, :options, :results])
+stack = Modware::Stack.new(env: [:name, :options, :results])
 ```
 
 and Modware will define a class that accepts those keys as keyword arguments, and has accessor methods for each (see 
@@ -87,20 +87,20 @@ stack.start(*args) { |env|
 
 The execution sequence of the stack is as follows:
 
-1. Create environment instance `env = env_class.new(*args)`
-2. Call each middleware `before` method, in the order they were added
-3. Call each middleware `around` method, in the order they were added.  This bottoms out with the last `implement` method to be added, if any, otherwise the base implementation
-4. Call each middleware `after` method, in the order they were added
-5. return `env`
+1. Create environment instance `env = env_klass.new(*args)`
+2. Call each middleware `before(env)` method, in the order they were added
+3. Call each middleware `around(env)` method, in the order they were added.  This bottoms out with the last `implement(env)` method to be added, if any, otherwise the base implementation
+4. Call each middleware `after(env)` method, in the order they were added
+5. Return `env`
 
 ### Helpers
 
-* `Modware::is_middleware?(mod)` returns truthy if `mod`'s instance methods include any of the middleware methods `:before`, `:after`, `:around`, or `:implement`
+* `Modware.is_middleware?(mod)` returns truthy if `mod`'s instance methods include any of the middleware methods `:before`, `:after`, `:around`, or `:implement`
 
 ## See also
 
-The [middleware](https://github.com/mitchellh/middleware) gem works well, following a [rack](http://rack.github.io/)-like execution model.
+The [middleware](https://rubygems.org/gems/middleware) gem works well, following a [rack](http://rack.github.io/)-like execution model.
 
 ## Contributing
 
-Contributions welcome -- feel free to open issues or submit pull requests!  Thanks!
+Contributions welcome -- feel free to open issues or submit pull requests.  Thanks!
