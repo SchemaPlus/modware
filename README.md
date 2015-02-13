@@ -38,7 +38,7 @@ and Modware will define a class that accepts those keys as keyword arguments, an
 
 ### Defining middleware
 
-Middleware is defined as a module that defines one or more middleware methods:
+Define middleware by creating a module that defines one or more of these middleware methods:
 
 ```ruby
 module MyMiddleware
@@ -91,7 +91,36 @@ The execution sequence of the stack is as follows:
 2. Call each middleware `before(env)` method, in the order they were added
 3. Call each middleware `around(env)` method, in the order they were added.  This bottoms out with the last `implement(env)` method to be added, if any, otherwise the base implementation
 4. Call each middleware `after(env)` method, in the order they were added
-5. Return `env`
+5. `stack.start` returns `env`
+
+#### Example: wrapping an existing operation
+
+A common idiom is to wrap a modware stack around an existing operation:
+
+```ruby
+class WrapsOperation < BaseClass
+
+  attr_reader :stack
+
+  def initialized(*args)
+    super
+    @stack = Modware::Stack.new(env: [:time, :place, :result])
+  end
+  
+  def operation(time, place)
+    stack.start(time: time, place: place) { |env|
+      env.result = super env.time, env.place
+    }.result
+  end
+end
+```
+
+Notice in the `operation` wrapper method: 
+
+* The `env` instance gets initialized with the method arguments
+* The base implmenetation of `operation` gets its arguments from the `env` instance, giving clients a chance to modify them in `:before` or `:around` methods.
+* The result of the base implementation gets stored in `env`, giving clients a chance to modify it in `:around` or `:after` methods.
+* When stack execution finishes, it returns `env`, from which the wrapper returns the result.
 
 ### Helpers
 
