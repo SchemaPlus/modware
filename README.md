@@ -130,6 +130,11 @@ Notice in the `operation` wrapper method:
 
 The [middleware](https://rubygems.org/gems/middleware) gem works well, following a [rack](http://rack.github.io/)-like execution model.
 
+## Change Log
+
+* 0.1.1 - Thread safety in Stack#start
+* 0.1.0 - Initial release
+
 ## Contributing
 
 Contributions welcome -- feel free to open issues or submit pull requests.  Thanks!
