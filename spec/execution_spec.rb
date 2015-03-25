@@ -28,6 +28,13 @@ describe "Execution" do
         Given { stack.add Factory.middleware(2, implement: nil) }
 
         Then { expect(env.result).to eq [:before1, :before2, :around_pre2, :implement1, :around_post2, :after1, :after2 ] }
+
+        context "if add middleware3" do
+
+          Given { stack.add Factory.middleware(3, around: nil, implement: nil) }
+
+          Then { expect(env.result).to eq [:before1, :before2, :before3, :around_pre2, :implement1, :around_post2, :after1, :after2, :after3 ] }
+        end
       end
     end
 
