@@ -19,32 +19,31 @@ module Modware
 
     def start(*args, &implementation)
       env = @env_klass.new(*args)
-      @base_implementation = implementation
-      execute_stack(env)
+      execute_stack(env, implementation)
       env
     end
 
     private
 
-    def execute_stack(env)
-      return call_implementation(env) unless @middlewares.any?
+    def execute_stack(env, base_implementation)
+      return call_implementation(env, base_implementation) unless @middlewares.any?
 
       @middlewares.each do |middleware|
         middleware.before env if middleware.respond_to? :before
       end
 
-      @middlewares.first._call(env)
+      @middlewares.first._call(env, base_implementation)
 
       @middlewares.each do |middleware|
         middleware.after env if middleware.respond_to? :after
       end
     end
 
-    def call_implementation(env)
+    def call_implementation(env, base_implementation)
       if middleware = @middlewares.select(&it.respond_to?(:implement)).last
         middleware.implement(env)
-      elsif @base_implementation
-        @base_implementation.call env
+      elsif base_implementation
+        base_implementation.call env
       else
         raise StackError, "No base implementation nor middleware implementation in stack"
       end
@@ -58,21 +57,21 @@ module Modware
         singleton_class.send :include, mod
       end
 
-      def _call(env)
+      def _call(env, base_implementation)
         if respond_to? :around
           around(env) { |env|
-            _continue env
+            _continue env, base_implementation
           }
         else
-          _continue env
+          _continue env, base_implementation
         end
       end
 
-      def _continue(env)
+      def _continue(env, base_implementation)
         if self._next
-          self._next._call(env)
+          self._next._call(env, base_implementation)
         else
-          @stack.send :call_implementation, env
+          @stack.send :call_implementation, env, base_implementation
         end
       end
     end
