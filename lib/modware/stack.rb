@@ -1,4 +1,3 @@
-require 'its-it'
 require 'key_struct'
 
 module Modware
@@ -49,7 +48,7 @@ module Modware
       end
 
       def call_implementation(env, base_implementation)
-        if middleware = @middlewares.select(&it.respond_to?(:implement)).last
+        if middleware = @middlewares.select { |mw| mw.respond_to?(:implement) }.last
           middleware.implement(env)
         elsif base_implementation
           base_implementation.call env
