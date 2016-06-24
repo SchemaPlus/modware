@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.1.0"
   spec.add_dependency "key_struct", "~> 0.4"
-  spec.add_dependency "its-it"
 
   spec.add_development_dependency 'coveralls'
   spec.add_development_dependency "bundler", "~> 1.7"
@@ -28,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-given"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "simplecov-gem-profile"
+  spec.add_development_dependency "its-it"
 end

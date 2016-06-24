@@ -1,3 +1,5 @@
+require 'its-it'
+
 module Factory
   def self.middleware(n=nil, before: true, after: true, around: true, implement: true, other: nil)
 
