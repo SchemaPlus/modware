@@ -102,7 +102,7 @@ class WrapsOperation < BaseClass
 
   attr_reader :stack
 
-  def initialized(*args)
+  def initialize(*args)
     super
     @stack = Modware::Stack.new(env: [:time, :place, :result])
   end
