@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'its-it'
-
 module Factory
   def self.middleware(n=nil, before: true, after: true, around: true, implement: true, other: nil)
 
@@ -39,6 +37,8 @@ module Factory
       end
     END
 
-    Module.new.tap(&it.module_eval(methods.compact.join))
+    Module.new do
+      module_eval(methods.compact.join)
+    end
   end
 end
