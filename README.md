@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/modware.svg)](http://badge.fury.io/rb/modware)
-[![Build Status](https://secure.travis-ci.org/ronen/modware.svg)](http://travis-ci.org/ronen/modware)
-[![Coverage Status](https://img.shields.io/coveralls/ronen/modware.svg)](https://coveralls.io/r/ronen/modware)
+[![Build Status](https://github.com/SchemaPlus/modware/actions/workflows/prs.yml/badge.svg)](https://github.com/SchemaPlus/modware/actions)
+[![Coverage Status](https://coveralls.io/repos/github/SchemaPlus/modware/badge.svg)](https://coveralls.io/github/SchemaPlus/modware)
 
 # Modware
 

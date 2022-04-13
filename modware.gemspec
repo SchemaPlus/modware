@@ -17,15 +17,14 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.1.0"
+  spec.required_ruby_version = ">= 2.5.0"
   spec.add_dependency "key_struct", "~> 0.4"
 
-  spec.add_development_dependency 'coveralls'
-  spec.add_development_dependency "bundler", "~> 1.7"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rspec-given"
   spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "simplecov-gem-profile"
+  spec.add_development_dependency 'simplecov-lcov', '~> 0.8.0'
   spec.add_development_dependency "its-it"
 end

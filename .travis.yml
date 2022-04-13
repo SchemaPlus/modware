@@ -1,7 +1,0 @@
-sudo: false
-rvm:
-  - 2.1.5
-script: bundle exec rake spec_with_coveralls
-notifications:
-  recipients:
-    - ronen@barzel.org
