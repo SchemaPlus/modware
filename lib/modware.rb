@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "modware/errors"
 require "modware/stack"
 require "modware/version"

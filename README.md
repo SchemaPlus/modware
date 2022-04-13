@@ -32,8 +32,7 @@ where `klass` is a Class for the environment instance that will be passed to the
 stack = Modware::Stack.new(env: [:name, :options, :results])
 ```
 
-and Modware will define a class that accepts those keys as keyword arguments, and has accessor methods for each (see 
-[`KeyStruct`](https://rubygems.org/gems/key_struct)).
+and Modware will define a class that accepts those keys as keyword arguments, and has accessor methods for each
 
 
 ### Defining middleware
