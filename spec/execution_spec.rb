@@ -15,7 +15,7 @@ describe "Execution" do
 
   context "when start with base implementation" do
 
-    When(:env) { stack.start result: [] { |env| env.result << :base } }
+    When(:env) { stack.start(result: []) { |env| env.result << :base } }
 
     Then { expect(env.result).to eq [:base] }
 
