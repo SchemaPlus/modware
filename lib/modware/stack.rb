@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-require 'key_struct'
-
 module Modware
   class Stack
     def initialize(env:)
       @env_klass = case env
                    when Class then env
-                   else KeyStruct[*env]
+                   else
+                     Struct.new(*env, keyword_init: true) do
+                       def to_hash
+                         to_h.compact
+                       end
+                     end
                    end
       @middleware_mods = []
     end
