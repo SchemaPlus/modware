@@ -131,6 +131,7 @@ The [middleware](https://rubygems.org/gems/middleware) gem works well, following
 
 ## Change Log
 
+* 0.2.0 - Add ruby 3.0 support and drop ruby < 2.5
 * 0.1.3 - Remove its-it dependency :(  #2
 * 0.1.2 - More thread safety in Stack#start
 * 0.1.1 - Thread safety in Stack#start
