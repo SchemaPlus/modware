@@ -23,4 +23,12 @@ describe "Env" do
     Then { expect(env.to_hash).to eq args }
   end
 
+  context "if env: klass is an array of keys with nils in args" do
+
+    Given(:klass) { [:a, :b, :c] }
+    Given(:args) { {a: 1, b: 2, c: nil} }
+
+    Then { expect(env.to_hash).to eq args }
+  end
+
 end

@@ -8,7 +8,7 @@ module Modware
                    else
                      Struct.new(*env, keyword_init: true) do
                        def to_hash
-                         to_h.compact
+                         to_h
                        end
                      end
                    end
