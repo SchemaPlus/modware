@@ -131,6 +131,7 @@ The [middleware](https://rubygems.org/gems/middleware) gem works well, following
 
 ## Change Log
 
+* 1.0.1 - Fix KeyStruct replacement
 * 1.0.0 - use a major bump due to breakage with the 0.2.0 version and existing gems
 * 0.2.0 - Add ruby 3.0 support and drop ruby < 2.5 (yanked)
 * 0.1.3 - Remove its-it dependency :(  #2
